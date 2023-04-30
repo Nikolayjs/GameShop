@@ -1,0 +1,9 @@
+.header {
+  @apply bg-[#212023]/90 backdrop-blur-sm absolute top-0 left-0 right-0 z-50 py-2 md:fixed md:transition-all lg:m-auto;
+  > div {
+    @apply mx-auto max-w-[90rem] justify-between px-4 md:flex;
+    > div {
+      @apply flex items-center justify-between;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.list {
+  @apply absolute border border-gray-700 rounded-xl bg-black/60 w-full animate-fade z-10;
+  top: calc(100% + 15px);
+  > a {
+    @apply flex items-center py-3 px-4 relative;
+    &::after {
+      @apply absolute -right-0.5 h-0 w-0.5 bg-transparent;
+      content: '';
+      top: 28%;
+      transition: height 0.3s ease-in-out, background-color 0.3s;
+    }
+    &:hover::after {
+      @apply bg-red-600 h-2/5;
+    }
+    img {
+      @apply rounded-lg;
+    }
+    > span {
+      @apply ml-3 text-white truncate;
+      &:last-child {
+        width: 70%;
+      }
+    }
+  }
+}
+.wrapper {
+  @apply relative;
+}
+.search {
+  @apply rounded-3xl border border-gray-700 px-3 py-2 flex items-center transition-colors;
+  > input {
+    @apply text-white placeholder:text-gray-600 block bg-transparent outline-none;
+  }
+  &:focus-whithin {
+    @apply fill-gray-500;
+    > svg {
+      @apply fill-gray-600;
+    }
+  }
+}
