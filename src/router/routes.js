@@ -1,4 +1,3 @@
-import AddForm from '../components/ui/AddForm';
 import AdminPanel from '../screens/AdminPanel';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
@@ -24,5 +23,10 @@ export const adminRoutes = [
   { path: '/games/:id', element: ProductPage, url: '/games/:id', name: 'Описание' },
   { path: '/user/:id', element: UserPage, url: '/user/:id', name: 'Пользователь' },
   { path: '/admin/:id', element: AdminPanel, url: '/admin/:id', name: 'Админка' },
-  { path: '/games/:id/edit', element: AdminPanel, url: '/games/:id/edit', name: 'Редактировать' },
+  {
+    path: '/games/:id/edit',
+    element: AdminPanel,
+    url: '/games/:id/edit',
+    name: 'Редактировать',
+  },
 ];

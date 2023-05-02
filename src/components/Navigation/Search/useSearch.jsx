@@ -13,7 +13,6 @@ const useSearch = () => {
     dispatch(fetchGamesWithSearch(searchTerm));
   }, [dispatch, debouncedSearch]);
   const data = useSelector((state) => state.games.search);
-  console.log(data);
   const { isSuccess } = useQuery(['search query list', debouncedSearch], () => data, {
     select: ({ data }) => data,
     enabled: !!debouncedSearch,

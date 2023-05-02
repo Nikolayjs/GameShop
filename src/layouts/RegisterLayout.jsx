@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { fetchRegister } from '../store/slices/auth';
 import TextField from '../components/ui/TextField';
-
+import styles from './Layouts.module.scss';
+import HeroIcon from '../components/ui/HeroIcon';
 const RegisterLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -60,14 +61,15 @@ const RegisterLayout = () => {
 
   return (
     <>
-      <div
-        className="absolute top-0 l-0 w-full h-full cursor-default blur-sm"
-        onClick={() => navigate('/')}
-      >
+      <div className={styles.loginWrapper} onClick={() => navigate('/')}>
         <MainLayout />
       </div>
-      <div className="absolute right-0 w-[20%] bg-black/50 p-10 h-screen">
-        <h1 className="text-white text-center">Регистрация</h1>
+      <div className={styles.loginContainer}>
+        <div className="flex justify-between">
+          <h3 className="text-white text-center">Регистрация</h3>
+          <HeroIcon name="XMarkIcon" onClick={() => navigate('/')} />
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             label="E-mail"
@@ -86,7 +88,7 @@ const RegisterLayout = () => {
             onChange={(e) => handleChange(e, password)}
           />
           <div className="m-auto text-center mt-10">
-            <span className="text-white text-center hover:text-gray-500 ease-out duration-300">
+            <span>
               <Link to="/login">У меня уже есть аккаунт</Link>
             </span>
             <div type="submit">

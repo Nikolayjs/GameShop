@@ -1,7 +1,5 @@
 import React from 'react';
 import Product from '../layouts/Product';
-// import Header from '../components/Navigation/Header';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from '../service/axios';
 import Header from '../components/Navigation/Header';
@@ -9,7 +7,6 @@ import Header from '../components/Navigation/Header';
 const ProductPage = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
-  const userData = useSelector((state) => state.auth.data);
   const { id } = useParams();
   React.useEffect(() => {
     axios
@@ -30,7 +27,7 @@ const ProductPage = () => {
     <>
       <Header />
       <Product
-        _id={data._id}
+        id={data._id}
         title={data.title}
         description={data.description}
         price={data.price}

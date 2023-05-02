@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import AddForm from '../components/ui/AddForm';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import Spinner from '../components/ui/Spinner';
 import { fetchGames, fetchRemoveGame } from '../store/slices/games';
-
+import styles from './Layouts.module.scss';
 const AdminLayout = () => {
   const dispatch = useDispatch();
   const { games } = useSelector((state) => state.games);
@@ -30,10 +31,10 @@ const AdminLayout = () => {
   };
 
   if (games.items.length === 0) {
-    return <h1 className="mt-[200px] text-3xl text-center">Loading</h1>;
+    return <Spinner />;
   }
   return (
-    <div className="mt-32 mx-auto flex flex-col max-w-xl">
+    <div className={styles.adminContainer}>
       {addGame ? (
         <AddForm closeForm={setAddGame} isEdit={isEdit} id={gameId} />
       ) : (

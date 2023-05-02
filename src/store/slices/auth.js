@@ -22,7 +22,7 @@ export const fetchAuthAdmin = createAsyncThunk('auth/fetchAuthAdmin', async () =
 });
 
 const initialState = {
-  data: null,
+  data: [],
   status: 'loading',
 };
 

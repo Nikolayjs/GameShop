@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Logo = () => {
+const Logo = ({ customStyle }) => {
   return (
-    <div className="flex">
+    <div className={`flex ${customStyle}`}>
       <Link to="/" className="flex items-center">
         <svg
           viewBox="0 0 1024 1024"

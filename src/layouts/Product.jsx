@@ -1,28 +1,21 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '../components/ui/Button';
-import MainLayout from './MainLayout';
+import Spinner from '../components/ui/Spinner';
+import { useSelector } from 'react-redux';
+import { addToCart } from '../service/transactionService';
 
-const Product = ({
-  _id,
-  title,
-  image,
-  contentImage,
-  description,
-  price,
-  isLoading,
-  isSingleProduct,
-}) => {
+const Product = ({ id, title, image, contentImage, description, price, isLoading }) => {
+  const userData = useSelector((state) => state.auth.data);
   const [modal, setModal] = React.useState(false);
   const [pic, setPic] = React.useState('');
-
   const handleModal = (img) => {
     setModal(!modal);
     setPic(img);
   };
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <Spinner />;
   }
 
   return (
@@ -30,23 +23,24 @@ const Product = ({
       <h1 className="text-3xl">{title}</h1>
       <div className="max-w-3xl mt-6 bg-black/20 rounded-md">
         <div className="p-4">
-          <img className="rounded-md" src={image} />
+          <img className="rounded-md" src={image} alt={`game-${title}`} />
         </div>
         <p className="p-4">{description}</p>
         <h3 className="text-xl">Скриншоты</h3>
-        <div className="flex">
+        <div className="flex w-full flex-col items-center md:flex-row">
           {contentImage.map((image) => (
             <img
               key={uuidv4()}
-              className="p-4 max-w-sm justify-between cursor-zoom-in"
+              className="p-4 md:max-w-sm justify-between cursor-zoom-in"
               src={image}
+              alt={`game-${title}`}
               onClick={() => handleModal(image)}
             />
           ))}
         </div>
         <div className="flex p-5 justify-around">
           <span>Цена: {price}₽</span>
-          <Button>Купить</Button>
+          <Button onClick={() => addToCart(userData._id, id)}>Купить</Button>
         </div>
       </div>
       {/* Modal */}
@@ -57,7 +51,12 @@ const Product = ({
             <div className="mx-auto overflow-hidden rounded-lg sm:w-full sm:max-w-6xl">
               <div className="relative p-6">
                 <div className="mt-2 text-sm">
-                  <img className="cursor-zoom-out" src={pic} onClick={() => setModal(false)} />
+                  <img
+                    className="cursor-zoom-out"
+                    src={pic}
+                    alt={`game-${title}`}
+                    onClick={() => setModal(false)}
+                  />
                 </div>
               </div>
             </div>

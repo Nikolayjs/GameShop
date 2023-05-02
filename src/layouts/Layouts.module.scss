@@ -1,0 +1,14 @@
+.adminContainer {
+  @apply mt-32 mx-auto flex flex-col max-w-xl;
+}
+
+.loginWrapper {
+  @apply absolute w-full h-full cursor-default overflow-hidden blur-sm;
+}
+
+.loginContainer {
+  @apply absolute right-0 w-full lg:w-[20%] bg-black/50 py-10 px-5 h-full md:h-screen flex flex-col justify-normal gap-2;
+  span {
+    @apply text-white text-center hover:text-gray-500 ease-out duration-300;
+  }
+}

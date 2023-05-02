@@ -12,7 +12,6 @@ export const fetchGamesWithSearch = createAsyncThunk(
     const { data } = await axiosClassic.get('/search', {
       params: searchTerm ? { searchTerm } : {},
     });
-    console.log(data, 'data');
     return data;
   }
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Search.module.scss';
 const SearchList = ({ games = [], reset }) => {
   const navigate = useNavigate();
@@ -9,11 +9,17 @@ const SearchList = ({ games = [], reset }) => {
   };
   return (
     <div className={styles.list}>
-      {games.map((game) => (
-        <a className="cursor-pointer" onClick={() => resetHandler(game._id)}>
-          {game.title}
-        </a>
-      ))}
+      {games.length > 0 ? (
+        <>
+          {games.map((game) => (
+            <span key={game._id} className="cursor-pointer" onClick={() => resetHandler(game._id)}>
+              {game.title}
+            </span>
+          ))}
+        </>
+      ) : (
+        <p className="p-2">Ничего не найдено</p>
+      )}
     </div>
   );
 };
