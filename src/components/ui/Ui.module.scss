@@ -32,3 +32,74 @@
 svg {
   @apply h-5 w-5 cursor-pointer hover:text-gray-500;
 }
+
+.btn {
+  @apply rounded-lg border border-yellow-700 bg-yellow-800 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-yellow-600 hover:bg-yellow-600 focus:ring focus:ring-yellow-500 disabled:cursor-not-allowed disabled:border-yellow-300 disabled:bg-yellow-300;
+}
+
+.card {
+  @apply mx-auto overflow-hidden rounded-lg bg-black/20 shadow;
+  img {
+    @apply aspect-video min-h-[250px] min-w-full object-cover cursor-pointer;
+  }
+  div {
+    @apply p-4 text-gray-300;
+  }
+}
+
+.cardWithBg {
+  @apply relative mx-auto max-w-md overflow-hidden rounded-lg bg-black/20 shadow;
+  img {
+    @apply w-full object-cover;
+  }
+  .cardCap {
+    @apply absolute inset-0 z-10 bg-gradient-to-t from-black;
+  }
+  .content {
+    @apply absolute inset-x-0 bottom-0 z-20 p-4;
+  }
+}
+
+.simpleCard {
+  @apply mx-auto max-w-xl rounded-lg bg-black/20 shadow m-2;
+  > ul {
+    @apply divide-y divide-gray-400 py-2 px-4;
+    > li {
+      @apply flex py-4;
+    }
+  }
+  img {
+    @apply h-20 w-20 rounded-lg object-cover;
+  }
+}
+
+.dropdown {
+  @apply justify-center;
+
+  .container {
+    @apply relative inline-block;
+  }
+  .dropdownWrapper {
+    @apply absolute -left-5 -top-[6px] z-10 mt-2 w-48 divide-y divide-gray-400 rounded-lg bg-black/90 text-left text-sm shadow-lg;
+    li {
+      @apply flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-300 hover:text-gray-500;
+    }
+
+    svg {
+      @apply h-4 w-4;
+    }
+  }
+}
+
+.inputContainer {
+  @apply mx-auto py-2;
+  .iconContainer {
+    @apply pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5;
+  }
+  svg {
+    @apply h-5 w-5 text-[#646366];
+  }
+  input {
+    @apply block border-none ring-transparent bg-[#171719] text-[#646366] w-full rounded-2xl focus:ring-0 focus:ring-offset-0;
+  }
+}

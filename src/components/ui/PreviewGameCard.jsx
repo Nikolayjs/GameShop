@@ -27,6 +27,7 @@ const PreviewGameCard = ({ games, userData, id }) => {
       setInCart(!inCart);
     }
   };
+
   return (
     <div className={styles.mainContainer}>
       <h1>Игры</h1>

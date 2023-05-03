@@ -36,7 +36,6 @@ const AddForm = ({ closeForm, isEdit, id }) => {
   React.useEffect(() => {
     if (id) {
       axios.get(`/games/${id}`).then(({ data }) => {
-        console.log(data);
         setTitle(data.title);
         setDescription(data.description);
         setImage(data.image);

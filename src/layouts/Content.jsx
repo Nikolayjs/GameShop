@@ -20,6 +20,7 @@ const Content = () => {
   if (games.items.length === 0 || !user) {
     return <Spinner />;
   }
+
   return <PreviewGameCard games={games} userData={user} id={user._id} />;
 };
 
