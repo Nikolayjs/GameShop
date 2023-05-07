@@ -42,7 +42,7 @@ svg {
   img {
     @apply aspect-video min-h-[250px] min-w-full object-cover cursor-pointer;
   }
-  div {
+  .aboutUser {
     @apply p-4 text-gray-300;
   }
 }
@@ -91,15 +91,31 @@ svg {
   }
 }
 
-.inputContainer {
-  @apply mx-auto py-2;
-  .iconContainer {
-    @apply pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5;
-  }
+.spinner {
+  @apply mt-96 m-auto text-center flex flex-col justify-center;
   svg {
-    @apply h-5 w-5 text-[#646366];
+    @apply inline w-20 h-20 mr-2 text-gray-400 animate-spin dark:text-gray-600 fill-orange-600;
   }
-  input {
-    @apply block border-none ring-transparent bg-[#171719] text-[#646366] w-full rounded-2xl focus:ring-0 focus:ring-offset-0;
+  span {
+    @apply mt-5 text-xl;
+  }
+}
+
+.textfieldContainer {
+  @apply mx-auto max-w-3xl mb-2;
+  .labelError {
+    @apply mb-1 mt-1 block text-sm font-medium  text-[#646366]  after:ml-0.5 after:text-red-500 after:content-['*'];
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-gray-500 after:ml-0.5 after:text-red-500;
+  }
+  .inputError {
+    @apply block bg-[#171719] text-[#646366] w-full rounded-md border-orange-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500;
+  }
+  .input {
+    @apply block border-none bg-[#171719] text-[#646366] w-full rounded-2xl focus:ring-0 focus:ring-offset-0;
+  }
+  p {
+    @apply mt-1 text-sm text-red-500;
   }
 }

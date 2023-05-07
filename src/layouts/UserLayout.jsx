@@ -2,7 +2,9 @@ import axios from '../service/axios';
 import React from 'react';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-import TextField from '../components/ui/TextField';
+import { formConstructor } from '../utils/formConstructor';
+import Form from '../components/Form';
+import styles from './Layouts.module.scss';
 
 const UserLayout = ({ data }) => {
   // const { id } = useParams();
@@ -13,6 +15,14 @@ const UserLayout = ({ data }) => {
   const [email, setUserEmail] = React.useState('');
   const [avatarUrl, setUserAvatar] = React.useState('');
   const isEditing = Boolean(data._id);
+  const formFields = formConstructor(
+    [
+      [fullName, fullName, 'fullName', setUserName, 'Имя'],
+      [email, email, 'email', setUserEmail, 'email'],
+      [avatarUrl, avatarUrl, 'avatarUrl', setUserAvatar, 'Аватар'],
+    ],
+    [onSubmit, () => setIsEditable(false)]
+  );
 
   React.useEffect(() => {
     axios.get(`/auth/me`).then(() => {
@@ -22,7 +32,7 @@ const UserLayout = ({ data }) => {
     });
   }, []);
 
-  const onSubmit = async () => {
+  async function onSubmit() {
     try {
       const fields = {
         fullName,
@@ -37,7 +47,7 @@ const UserLayout = ({ data }) => {
       console.warn(error);
       alert('Ошибка');
     }
-  };
+  }
 
   if (!isEditable) {
     return (
@@ -45,7 +55,7 @@ const UserLayout = ({ data }) => {
         <h1 className="text-center m-5">Профиль</h1>
         <Card image={data.avatarUrl}>
           <p className="text-xs text-gray-400/50">Профиль создан {createdDate} </p>
-          <div className="flex flex-col gap-3 mt-5">
+          <div className="flex flex-col gap-3 mt-5 p-2">
             <h3>Имя: {data.fullName}</h3>
             <h3>Почта: {data.email}</h3>
             <h3>Баланс: {data.balance}₽</h3>
@@ -61,31 +71,8 @@ const UserLayout = ({ data }) => {
       <div className="mx-auto w-[90%] md:w-[80%] lg:w-[60%] xl:w-[40%]">
         <h1 className="text-center m-5">Профиль</h1>
         <Card image={data.avatarUrl}>
-          <div className="flex flex-col gap-3 mt-5">
-            <form>
-              <TextField
-                placeholder={fullName}
-                value={fullName}
-                inputId="fullName"
-                onChange={(e) => setUserName(e.target.value)}
-              />
-              <TextField
-                placeholder={email}
-                value={email}
-                inputId="email"
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-              <TextField
-                placeholder={avatarUrl}
-                value={avatarUrl}
-                inputId="avatarUrl"
-                onChange={(e) => setUserAvatar(e.target.value)}
-              />
-              <div className="flex gap-3 max-w-sm">
-                <Button onClick={onSubmit}>Сохранить</Button>
-                <Button onClick={() => setIsEditable(false)}>Отменить</Button>
-              </div>
-            </form>
+          <div className="flex flex-col gap-3 mt-5 p-2">
+            <Form fields={formFields} />
           </div>
         </Card>
       </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import AddForm from '../components/ui/AddForm';
+
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Spinner from '../components/ui/Spinner';
+import AddForm from '../screens/AddForm';
 import { fetchGames, fetchRemoveGame } from '../store/slices/games';
 import styles from './Layouts.module.scss';
 const AdminLayout = () => {
@@ -24,8 +25,6 @@ const AdminLayout = () => {
   };
 
   const editHandler = (id) => {
-    console.log(isEdit);
-
     setAddGame(true);
     setGameId(id);
   };

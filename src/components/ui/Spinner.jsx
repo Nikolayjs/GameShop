@@ -1,12 +1,11 @@
 import React from 'react';
-
+import styles from './Ui.module.scss';
 const Spinner = () => {
   return (
-    <div className="mt-96 m-auto text-center flex flex-col justify-center">
+    <div className={styles.spinner}>
       <div>
         <svg
           aria-hidden="true"
-          className="inline w-20 h-20 mr-2 text-gray-400 animate-spin dark:text-gray-600 fill-purple-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +20,7 @@ const Spinner = () => {
           />
         </svg>
       </div>
-      <span className="mt-5 text-xl">Загружаем контент...</span>
+      <span>Загружаем контент...</span>
     </div>
   );
 };

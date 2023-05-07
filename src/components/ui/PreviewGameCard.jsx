@@ -6,27 +6,19 @@ import HeroIcon from './HeroIcon';
 import styles from './Ui.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCart } from '../../store/slices/userGames';
-const PreviewGameCard = ({ games, userData, id }) => {
-  const [inCart, setInCart] = React.useState(false);
+import Spinner from './Spinner';
+const PreviewGameCard = ({ games, userData, common, addToCart, userCart }) => {
+  const [cart, setCart] = React.useState([]);
+  // const [inCart, setInCart] = React.useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userCart = useSelector((state) => state.userGames.cart.items);
-
+  // const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(fetchCart());
-  }, [inCart]);
+    setCart(userCart?.map((u) => u._id));
+  }, [userCart]);
 
-  console.log(userCart);
-
-  const addInCartHandler = async (userId, gameId) => {
-    if (userCart.includes(gameId)) {
-      await removeFromCart(userId, gameId);
-      setInCart(!inCart);
-    } else {
-      await addToCart(userId, gameId);
-      setInCart(!inCart);
-    }
-  };
+  if (!cart) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.mainContainer}>
@@ -53,14 +45,21 @@ const PreviewGameCard = ({ games, userData, id }) => {
               </div>
               <div className={styles.cardFooter}>
                 <span>{`${game.price}₽`}</span>
-                {userCart.includes(game._id) ? (
-                  <HeroIcon
-                    name="SquaresPlusIcon"
-                    isSolid
-                    onClick={() => addInCartHandler(id, game._id)}
-                  />
-                ) : (
-                  <HeroIcon name="SquaresPlusIcon" onClick={() => addInCartHandler(id, game._id)} />
+                {!common && (
+                  <>
+                    {cart?.includes(game._id) ? (
+                      <HeroIcon
+                        name="SquaresPlusIcon"
+                        isSolid
+                        onClick={() => addToCart(userData._id, game._id)}
+                      />
+                    ) : (
+                      <HeroIcon
+                        name="SquaresPlusIcon"
+                        onClick={() => addToCart(userData._id, game._id)}
+                      />
+                    )}
+                  </>
                 )}
               </div>
             </div>

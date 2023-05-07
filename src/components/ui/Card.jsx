@@ -4,7 +4,7 @@ const Card = ({ title, image, backgroundImage, children, onClick, tinyImage }) =
   if (image) {
     return (
       <div className={styles.card}>
-        <img src={image} alt={`${title}-card`} />
+        <img src={image} alt={`${image}-card`} />
         <div>{children}</div>
       </div>
     );
