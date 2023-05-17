@@ -7,7 +7,7 @@
 }
 
 .gameCard {
-  @apply w-[180px] lg:w-[220px] overflow-hidden rounded-lg bg-zinc-800 shadow mt-2 transition-all ease-in-out hover:scale-105;
+  @apply w-[180px] lg:w-[220px] overflow-hidden rounded-lg bg-zinc-800 shadow mt-2 transition-all ease-in-out hover:scale-105 flex flex-col justify-around;
   img {
     @apply aspect-video w-full h-[300px] object-cover cursor-pointer hover:contrast-50 ease-in-out duration-300;
   }

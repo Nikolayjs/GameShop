@@ -4,11 +4,8 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { formConstructor } from '../utils/formConstructor';
 import Form from '../components/Form';
-import styles from './Layouts.module.scss';
 
 const UserLayout = ({ data }) => {
-  // const { id } = useParams();
-  // const { fullName, balance, email, createdAt, updatedAt, _id, purchasedGames, avatarUrl } = data;
   const [isEditable, setIsEditable] = React.useState(false);
   const createdDate = new Date(data.createdAt).toLocaleDateString();
   const [fullName, setUserName] = React.useState('');
@@ -30,7 +27,7 @@ const UserLayout = ({ data }) => {
       setUserEmail(data.email);
       setUserAvatar(data.avatarUrl);
     });
-  }, []);
+  }, [data]);
 
   async function onSubmit() {
     try {

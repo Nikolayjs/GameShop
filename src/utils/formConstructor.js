@@ -9,9 +9,8 @@ export const formConstructor = (data, buttons) => {
       label: input[4],
     });
   });
-  const form = {
+  return {
     inputs: array,
-    buttons: { submit: buttons[0], close: buttons[1] },
+    buttons: {submit: buttons[0], close: buttons[1]},
   };
-  return form;
 };

@@ -13,5 +13,5 @@ code {
 }
 
 h1 {
-  @apply text-4xl text-gray-200;
+  @apply text-3xl text-gray-200;
 }

@@ -4,9 +4,12 @@ import Button from '../components/ui/Button';
 import Spinner from '../components/ui/Spinner';
 import { useSelector } from 'react-redux';
 import { addToCart } from '../service/transactionService';
+import { useNavigate } from 'react-router-dom';
+import styles from './Layouts.module.scss';
 
 const Product = ({ id, title, image, contentImage, description, price, isLoading }) => {
   const userData = useSelector((state) => state.auth.data);
+  const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
   const [pic, setPic] = React.useState('');
   const handleModal = (img) => {
@@ -19,47 +22,44 @@ const Product = ({ id, title, image, contentImage, description, price, isLoading
   }
 
   return (
-    <div className="mt-[100px] flex flex-col m-auto justify-center items-center text-center mb-20">
-      <h1 className="text-3xl">{title}</h1>
-      <div className="max-w-3xl mt-6 bg-black/20 rounded-md">
-        <div className="p-4">
-          <img className="rounded-md" src={image} alt={`game-${title}`} />
+    <div className={styles.productContainer}>
+      <h1>{title}</h1>
+      <div className={styles.productCard}>
+        <div className={styles.productImage}>
+          <img src={image} alt={`game-${title}`} />
         </div>
-        <p className="p-4">{description}</p>
-        <h3 className="text-xl">Скриншоты</h3>
-        <div className="flex w-full flex-col items-center md:flex-row">
+        <p>{description}</p>
+        <h3>Скриншоты</h3>
+        <div className={styles.images}>
           {contentImage.map((image) => (
             <img
               key={uuidv4()}
-              className="p-4 md:max-w-sm justify-between cursor-zoom-in"
               src={image}
               alt={`game-${title}`}
               onClick={() => handleModal(image)}
             />
           ))}
         </div>
-        <div className="flex p-5 justify-around">
+        <div className={styles.btnContainer}>
           <span>Цена: {price}₽</span>
-          <Button onClick={() => addToCart(userData._id, id)}>Купить</Button>
+          {userData ? (
+            <Button onClick={() => addToCart(userData._id, id)}>Купить</Button>
+          ) : (
+            <Button onClick={() => navigate('/login')}>Войти</Button>
+          )}
         </div>
       </div>
       {/* Modal */}
-      <div className={`h-full w-full ${modal ? '' : 'hidden'}`}>
+      <div className={`${styles.modal} ${modal ? '' : 'hidden'}`}>
         <div>
-          <div className="fixed inset-0 z-10 bg-black/50"></div>
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
-            <div className="mx-auto overflow-hidden rounded-lg sm:w-full sm:max-w-6xl">
-              <div className="relative p-6">
-                <div className="mt-2 text-sm">
-                  <img
-                    className="cursor-zoom-out"
-                    src={pic}
-                    alt={`game-${title}`}
-                    onClick={() => setModal(false)}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className={styles.modalBg}></div>
+          <div className={styles.modalContent}>
+            <img
+              className="cursor-zoom-out"
+              src={pic}
+              alt={`game-${title}`}
+              onClick={() => setModal(false)}
+            />
           </div>
         </div>
       </div>

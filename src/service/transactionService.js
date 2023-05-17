@@ -12,6 +12,7 @@ export async function addToCart(userId, gameId) {
 export async function removeFromCart(userId, gameId) {
   try {
     const response = await axiosClassic.post(`/user/${userId}/removeFromCart/${gameId}`);
+
     return response;
   } catch (error) {
     console.log(error);

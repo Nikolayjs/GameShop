@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { selectIsAdmin, selectIsAuth } from './store/slices/auth';
 import { Route, Routes } from 'react-router-dom';
 import { adminRoutes, privateRoutes, publicRoutes } from './router/routes';
-import Home from './screens/Home';
-import ProductPage from './screens/ProductPage';
+
 
 const AppRouter = () => {
   const isAuth = useSelector(selectIsAuth);

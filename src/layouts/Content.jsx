@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { fetchCategories, fetchGames } from '../store/slices/games';
-
 import Spinner from '../components/ui/Spinner';
 
 import PreviewGameCard from '../components/ui/PreviewGameCard';

@@ -4,6 +4,7 @@ import Login from '../screens/Login';
 import ProductPage from '../screens/ProductPage';
 import Register from '../screens/Register';
 import UserPage from '../screens/UserPage';
+import CartScreen from '../screens/CartScreen';
 
 export const publicRoutes = [
   { path: '/', element: Home, url: '/', name: 'Главная страница' },
@@ -16,6 +17,7 @@ export const privateRoutes = [
   { path: '/', element: Home, url: '/', name: 'Главная страница' },
   { path: '/games/:id', element: ProductPage, url: '/games/:id', name: 'Описание' },
   { path: '/user/:id', element: UserPage, url: '/user/:id', name: 'Пользователь' },
+  { path: '/cart', element: CartScreen, url: '/cart', name: 'Корзина' },
 ];
 
 export const adminRoutes = [
@@ -29,4 +31,5 @@ export const adminRoutes = [
     url: '/games/:id/edit',
     name: 'Редактировать',
   },
+  { path: '/cart', element: CartScreen, url: '/cart', name: 'Корзина' },
 ];

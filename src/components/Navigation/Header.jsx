@@ -10,6 +10,7 @@ import Search from './Search/Search';
 import { linkGenerator } from '../../utils/LinkGenerator';
 import { adminLink, userLink } from '../../router/menuRoutes';
 import MobileNav from './MobileNav';
+import Badge from '../ui/Badge';
 
 const Header = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -89,18 +90,21 @@ const Header = () => {
           )}
           <Search />
           <nav className={styles.iconBar}>
-            <ul>
+            <ul className="relative">
               <li>
                 <HeroIcon
                   name="HeartIcon"
                   iconStyle="h-5 w-5 text-white cursor-pointer hover:text-red-500"
                 />
               </li>
-              <li>
+              <li className="flex" onClick={() => navigate('/cart')}>
                 <HeroIcon
                   name="ShoppingBagIcon"
                   iconStyle="h-5 w-5 text-white cursor-pointer hover:text-blue-500"
                 />
+                <Badge color="bg-yellow-600 m-auto absolute right-2 top-3">
+                  {userData?.cart?.length}
+                </Badge>
               </li>
             </ul>
           </nav>

@@ -1,22 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { addToCart, removeFromCart } from '../../service/transactionService';
 import HeroIcon from './HeroIcon';
 import styles from './Ui.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCart } from '../../store/slices/userGames';
 import Spinner from './Spinner';
 const PreviewGameCard = ({ games, userData, common, addToCart, userCart }) => {
-  const [cart, setCart] = React.useState([]);
-  // const [inCart, setInCart] = React.useState(false);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  React.useEffect(() => {
-    setCart(userCart?.map((u) => u._id));
-  }, [userCart]);
 
-  if (!cart) {
+  if (!games) {
     return <Spinner />;
   }
 
@@ -47,15 +38,15 @@ const PreviewGameCard = ({ games, userData, common, addToCart, userCart }) => {
                 <span>{`${game.price}₽`}</span>
                 {!common && (
                   <>
-                    {cart?.includes(game._id) ? (
+                    {userCart?.includes(game._id) ? (
                       <HeroIcon
-                        name="SquaresPlusIcon"
+                        name="ShoppingCartIcon"
                         isSolid
                         onClick={() => addToCart(userData._id, game._id)}
                       />
                     ) : (
                       <HeroIcon
-                        name="SquaresPlusIcon"
+                        name="ShoppingCartIcon"
                         onClick={() => addToCart(userData._id, game._id)}
                       />
                     )}

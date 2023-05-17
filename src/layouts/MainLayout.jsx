@@ -1,11 +1,8 @@
-import React, { Suspense } from 'react';
-import Footer from '../components/Navigation/Footer';
+import React from 'react';
 import Header from '../components/Navigation/Header';
-import Sidebar from '../components/Navigation/Sidebar';
 import Content from './Content';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCart } from '../store/slices/userGames';
-import { fetchAuthMe } from '../store/slices/auth';
 import { addToCart, removeFromCart } from '../service/transactionService';
 
 const MainLayout = () => {
@@ -22,6 +19,7 @@ const MainLayout = () => {
       setInCart(!inCart);
     } else {
       await addToCart(userId, gameId);
+      setTimeout(() => {}, 100);
       setInCart(!inCart);
     }
   };
@@ -29,12 +27,17 @@ const MainLayout = () => {
   if (userCart) {
     return (
       <>
-        <Header />
+        <Header cart={userCart.length} />
         <Content addToCart={addInCartHandler} userCart={userCart} />
       </>
     );
   }
-  return <></>;
+  return (
+    <>
+      <Header />
+      <Content />
+    </>
+  );
 };
 
 export default MainLayout;
